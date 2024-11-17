@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors Game</title>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            margin-top: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: #fff;
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-transform: uppercase;
+        }
+
+        main {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        
+        a img {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        a img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        
+        a img:active {
+            animation: bounce 0.5s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+    
+        #result {
+            margin-top: 30px;
+            font-size: 1.5rem;
+            text-align: center;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <header>
+            <h1>Rock Paper Scissors Game</h1>
+        </header>
+
+        <main>
+            
+            <a onclick="playGame('rock')">
+                <img src="https://www.seekpng.com/png/detail/111-1113492_rock-paper-scissors-boston.png" alt="Rock"
+                    height="100" width="170">
+            </a>
+
+            
+            <a onclick="playGame('paper')">
+                <img src="https://media.geeksforgeeks.org/wp-content/uploads/20210705223645/paper.jpeg" alt="Paper"
+                    height="100" width="100">
+            </a>
+
+            
+            <a onclick="playGame('scissor')">
+                <img src="https://i.pinimg.com/474x/67/eb/fd/67ebfd32e898b4ec3ae4e59ae33832c8.jpg" alt="Scissor"
+                    height="100" width="100">
+            </a>
+        </main>
+
+        
+        <div id="result">Choose an option to play!</div>
+    </center>
+
+    <script>
+        function playGame(playerChoice) {
+            const random = Math.random();
+
+            let computerChoice = '';
+            if (random < 1 / 3) {
+                computerChoice = 'rock';
+            } else if (random < 2 / 3) {
+                computerChoice = 'paper';
+            } else {
+                computerChoice = 'scissor';
+            }
+
+            
+            let result = '';
+            if (playerChoice === computerChoice) {
+                result = "It's a tie!";
+            } else if (
+                (playerChoice === 'rock' && computerChoice === 'scissor') ||
+                (playerChoice === 'paper' && computerChoice === 'rock') ||
+                (playerChoice === 'scissor' && computerChoice === 'paper')
+            ) {
+                result = "You win!";
+            } else {
+                result = "You lose!";
+            }
+
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `You chose <strong>${playerChoice}</strong>. Computer chose <strong>${computerChoice}</strong>.<br>${result}`;
+        }
+    </script>
+    <footer>
+        <br>
+        <br>
+        <br>
+        <br>
+        <center><h2>THANKS FOR PLAYING</h2></center>
+        <br>
+        <br><br>
+        <br>
+    </footer>
+</body>
+
+</html>
